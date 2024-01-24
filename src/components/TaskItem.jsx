@@ -1,4 +1,8 @@
-const TaskItem = ({ label, taskId }) => {
+const TaskItem = ({ label, taskId, deleteTask }) => {
+  const handleDelete = () => {
+    deleteTask(taskId);
+  };
+
   return (
     <li className="list-group-item d-flex justify-content-between align-items-center">
       <div>
@@ -11,7 +15,7 @@ const TaskItem = ({ label, taskId }) => {
           {label}
         </label>
       </div>
-      <div className="pointer">
+      <div className="pointer" onClick={handleDelete}>
         <i className="fa-solid fa-trash-can" aria-hidden="true"></i>
       </div>
     </li>

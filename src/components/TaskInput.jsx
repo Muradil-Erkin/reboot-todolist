@@ -1,16 +1,36 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
-const TaskInput = () => {
+const TaskInput = ({ addTask }) => {
   const [taskLabel, setTaskLabel] = useState("");
+
+  const handleAddTask = () => {
+    if (taskLabel.trim() === "") {
+      return;
+    }
+
+    const newTask = {
+      taskId: `task-${uuidv4()}`,
+      label: taskLabel.trim(),
+      isCompleted: false,
+    };
+
+    addTask(newTask);
+
+    setTaskLabel("");
+  };
 
   // change event handler
   const handleChange = (e) => {
     setTaskLabel(e.target.value);
   };
 
-  // click event handler
-  const handleClick = () => {
-    alert(`Clicked on the button with the text: ${taskLabel}`);
+  // keydown event handler
+  const handleKeyDown = (e) => {
+    // only when the enter key is pressed
+    if (e.key === "Enter") {
+      handleAddTask();
+    }
   };
 
   return (
@@ -22,13 +42,15 @@ const TaskInput = () => {
         placeholder="What do you need to do today?"
         aria-label="What do you need to do today?"
         aria-describedby="task-input"
+        value={taskLabel}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
       />
       <button
         className="btn btn-dark"
         type="button"
         id="task-input"
-        onClick={handleClick}
+        onClick={handleAddTask}
       >
         Add
       </button>
