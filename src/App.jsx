@@ -6,8 +6,7 @@ import { TaskList } from "./components/TaskList";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-
-  console.log("==> tasks", tasks);
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     const tasksFromLocalStorage = JSON.parse(
@@ -34,12 +33,38 @@ function App() {
     updateTasks(updatedTasks);
   };
 
+  const toggleTask = (taskId) => {
+    const updatedTasks = tasks.map((task) => {
+      // checking to see if the current task is the task we're trying update
+      if (task.taskId === taskId) {
+        // if it is, update the isCompleted property by flipping it
+        return {
+          ...task,
+          isCompleted: !task.isCompleted,
+        };
+      }
+      // if the element is not the one we're trying to update, return it as is
+      return task;
+    });
+    updateTasks(updatedTasks);
+  };
+
+  const clearCompletedTasks = () => {
+    const uncompletedTasks = tasks.filter((task) => !task.isCompleted);
+    updateTasks(uncompletedTasks);
+  };
+
   return (
     <div id="main-container">
       <TaskInput addTask={addTask} />
-      <TaskList tasks={tasks} deleteTask={deleteTask} />
-      <Filters />
-      <ClearTask />
+      <TaskList
+        tasks={tasks}
+        deleteTask={deleteTask}
+        toggleTask={toggleTask}
+        filter={filter}
+      />
+      <Filters filter={filter} setFilter={setFilter} />
+      <ClearTask clearTasks={clearCompletedTasks} />
     </div>
   );
 }

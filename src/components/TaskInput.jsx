@@ -52,7 +52,7 @@ const TaskInput = ({ addTask }) => {
         id="task-input"
         onClick={handleAddTask}
       >
-        Add
+        Add Task
       </button>
     </div>
   );

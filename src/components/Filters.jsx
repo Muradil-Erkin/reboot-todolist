@@ -1,15 +1,52 @@
-const Filters = () => {
+const Filters = ({ filter, setFilter }) => {
+  const handleChange = (e) => {
+    setFilter(e.target.value);
+  };
+
   return (
-    <div className="mb-3 d-flex column-gap-2">
-      <button className="btn btn-outline-dark" id="show-all">
+    <div
+      className="btn-group w-100 mb-3"
+      role="group"
+      aria-label="Basic radio toggle button group"
+    >
+      <input
+        type="radio"
+        className="btn-check"
+        name="btnradio"
+        id="all"
+        value="all"
+        onChange={handleChange}
+        checked={filter === "all"}
+      />
+      <label className="btn btn-outline-dark" htmlFor="all">
         Show All
-      </button>
-      <button className="btn btn-outline-dark" id="show-complated">
+      </label>
+
+      <input
+        type="radio"
+        className="btn-check"
+        name="btnradio"
+        id="completed"
+        value="completed"
+        onChange={handleChange}
+        checked={filter === "completed"}
+      />
+      <label className="btn btn-outline-dark" htmlFor="completed">
         Show Completed
-      </button>
-      <button className="btn btn-outline-dark" id="show-uncompleted">
+      </label>
+
+      <input
+        type="radio"
+        className="btn-check"
+        name="btnradio"
+        id="uncompleted"
+        value="uncompleted"
+        onChange={handleChange}
+        checked={filter === "uncompleted"}
+      />
+      <label className="btn btn-outline-dark" htmlFor="uncompleted">
         Show Uncompleted
-      </button>
+      </label>
     </div>
   );
 };
