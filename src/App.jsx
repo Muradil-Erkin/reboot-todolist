@@ -64,7 +64,10 @@ function App() {
         filter={filter}
       />
       <Filters filter={filter} setFilter={setFilter} />
-      <ClearTask clearTasks={clearCompletedTasks} />
+      <ClearTask
+        clearTasks={clearCompletedTasks}
+        disabled={tasks.filter((task) => task.isCompleted).length === 0}
+      />
     </div>
   );
 }
