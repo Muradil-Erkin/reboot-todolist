@@ -2,7 +2,13 @@ import { useState } from "react";
 import { Modal } from "./Modal";
 import { TaskItem } from "./TaskItem";
 
-const TaskList = ({ tasks, deleteTask, toggleTask, filter }) => {
+const TaskList = ({
+  tasks,
+  deleteTask,
+  toggleTask,
+  updateTaskLabel,
+  filter,
+}) => {
   const [taskToBeDeleted, setTaskToBeDeleted] = useState();
   console.log("taskToBeDeleted is updated", taskToBeDeleted);
 
@@ -26,6 +32,7 @@ const TaskList = ({ tasks, deleteTask, toggleTask, filter }) => {
         task={task}
         setTaskToBeDeleted={setTaskToBeDeleted}
         toggleTask={toggleTask}
+        updateTaskLabel={updateTaskLabel}
       />
     );
   });

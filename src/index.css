@@ -22,9 +22,21 @@ body {
 
 .pointer {
   cursor: pointer;
+  padding: 0 5px;
+  border-radius: 5px;
+}
+
+.pointer:hover {
+  background-color: lightgray;
 }
 
 .completed {
   text-decoration: line-through;
   color: lightgray;
+}
+
+.simple-input {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgba(221, 221, 221, 0.39);
 }

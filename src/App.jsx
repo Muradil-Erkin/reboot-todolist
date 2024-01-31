@@ -49,6 +49,19 @@ function App() {
     updateTasks(updatedTasks);
   };
 
+  const updateTaskLabel = (taskId, newLabel) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.taskId === taskId) {
+        return {
+          ...task,
+          label: newLabel,
+        };
+      }
+      return task;
+    });
+    updateTasks(updatedTasks);
+  };
+
   const clearCompletedTasks = () => {
     const uncompletedTasks = tasks.filter((task) => !task.isCompleted);
     updateTasks(uncompletedTasks);
@@ -61,6 +74,7 @@ function App() {
         tasks={tasks}
         deleteTask={deleteTask}
         toggleTask={toggleTask}
+        updateTaskLabel={updateTaskLabel}
         filter={filter}
       />
       <Filters filter={filter} setFilter={setFilter} />
