@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ClearTask } from "./components/ClearTask";
 import { Filters } from "./components/Filters";
 import { TaskInput } from "./components/TaskInput";
 import { TaskList } from "./components/TaskList";
+import { TasksContext } from "./context/TasksContext";
 
 function App() {
   const [tasks, setTasks] = useState([]);
