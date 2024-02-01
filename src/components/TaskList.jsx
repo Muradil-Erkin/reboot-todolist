@@ -1,14 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Modal } from "./Modal";
 import { TaskItem } from "./TaskItem";
+import { TasksContext } from "../context/TasksContext";
 
-const TaskList = ({
-  tasks,
-  deleteTask,
-  toggleTask,
-  updateTaskLabel,
-  filter,
-}) => {
+const TaskList = () => {
+  const { tasks, filter, deleteTask } = useContext(TasksContext);
+
   const [taskToBeDeleted, setTaskToBeDeleted] = useState();
   console.log("taskToBeDeleted is updated", taskToBeDeleted);
 
@@ -31,8 +28,6 @@ const TaskList = ({
         key={task.taskId}
         task={task}
         setTaskToBeDeleted={setTaskToBeDeleted}
-        toggleTask={toggleTask}
-        updateTaskLabel={updateTaskLabel}
       />
     );
   });

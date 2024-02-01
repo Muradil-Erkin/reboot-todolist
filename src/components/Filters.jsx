@@ -1,4 +1,9 @@
-const Filters = ({ filter, setFilter }) => {
+import { useContext } from "react";
+import { TasksContext } from "../context/TasksContext";
+
+const Filters = () => {
+  const { filter, setFilter } = useContext(TasksContext);
+
   const handleChange = (e) => {
     setFilter(e.target.value);
   };

@@ -40,3 +40,7 @@ body {
   outline: none;
   border-bottom: 1px solid rgba(221, 221, 221, 0.39);
 }
+
+.priority-icon {
+  padding-right: 5px;
+}

@@ -1,14 +1,41 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { TasksContext } from "../context/TasksContext";
 
-const TaskItem = ({
-  task,
-  setTaskToBeDeleted,
-  toggleTask,
-  updateTaskLabel,
-}) => {
-  const { label, taskId, isCompleted } = task;
+const PriorityIconClassMapping = {
+  high: "fa-angles-up text-danger",
+  medium: "fa-angle-up text-warning",
+  low: "fa-angle-down text-success",
+};
+
+const TaskItem = ({ task, setTaskToBeDeleted }) => {
+  const { toggleTask, updateTaskLabel } = useContext(TasksContext);
+
+  const { label, taskId, isCompleted, priority } = task;
   const [editMode, setEditMode] = useState(false);
   const [editedLabel, setEditedLabel] = useState(label);
+
+  // You can optionally use a function to get the icon classnames based on priority
+  // instead of the object mapping
+  // const getIconClassnamesBasedOnPriority = () => {
+  //   // if (priority === "high") {
+  //   //   return "fa-angles-up text-danger";
+  //   // } else if (priority === "medium") {
+  //   //   return "fa-angle-up text-warning";
+  //   // } else {
+  //   //   return "fa-angle-down text-success";
+  //   // }
+
+  //   switch (priority) {
+  //     case "high":
+  //       return "fa-angles-up text-danger";
+  //     case "medium":
+  //       return "fa-angle-up text-warning";
+  //     case "low":
+  //       return "fa-angle-down text-success";
+  //     default:
+  //       return "";
+  //   }
+  // };
 
   const handleChange = () => {
     toggleTask(taskId);
@@ -95,6 +122,11 @@ const TaskItem = ({
             </div>
           ) : (
             <>
+              <div className="priority-icon">
+                <i
+                  className={`fa-solid ${PriorityIconClassMapping[priority]}`}
+                ></i>
+              </div>
               <div
                 id="edit-button-container"
                 className="pointer"

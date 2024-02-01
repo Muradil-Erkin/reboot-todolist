@@ -1,15 +1,8 @@
-import { useContext } from "react";
-import { TasksContext } from "../context/TasksContext";
-
 const Modal = ({
   id,
   handleDelete,
   message = "Tasks will be deleted permanently.",
 }) => {
-  // being a consumer of the TasksContext, we can access all the
-  // values or functions that are provided by the TasksContext
-  const { userName } = useContext(TasksContext);
-
   return (
     <div
       className="modal fade"
@@ -24,7 +17,7 @@ const Modal = ({
         <div className="modal-content">
           <div className="modal-header">
             <h1 className="modal-title fs-5" id={`${id}Label`}>
-              Are you sure, {userName}?
+              Are you sure?
             </h1>
             <button
               type="button"

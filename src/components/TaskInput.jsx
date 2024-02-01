@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { TasksContext } from "../context/TasksContext";
 
-const TaskInput = ({ addTask }) => {
+const TaskInput = () => {
+  const { addTask } = useContext(TasksContext);
+
   const [taskLabel, setTaskLabel] = useState("");
+  const [priority, setPriority] = useState("low");
 
   const handleAddTask = () => {
     if (taskLabel.trim() === "") {
@@ -12,6 +16,7 @@ const TaskInput = ({ addTask }) => {
     const newTask = {
       taskId: `task-${uuidv4()}`,
       label: taskLabel.trim(),
+      priority,
       isCompleted: false,
     };
 
@@ -33,21 +38,38 @@ const TaskInput = ({ addTask }) => {
     }
   };
 
+  const handlePriorityChange = (e) => {
+    setPriority(e.target.value);
+  };
+
   return (
-    <div className="input-group mb-3">
-      <input
-        id="newTaskText"
-        type="text"
-        className="form-control"
-        placeholder="What do you need to do today?"
-        aria-label="What do you need to do today?"
-        aria-describedby="task-input"
-        value={taskLabel}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-      />
+    <div>
+      <div className="mb-3">
+        <input
+          id="newTaskText"
+          type="text"
+          className="form-control w-100"
+          placeholder="What do you need to do today?"
+          aria-label="What do you need to do today?"
+          aria-describedby="task-input"
+          value={taskLabel}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
+      <div className="mb-3">
+        <select
+          className="form-select priority"
+          value={priority}
+          onChange={handlePriorityChange}
+        >
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+      </div>
       <button
-        className="btn btn-dark"
+        className="btn btn-dark w-100 mb-3"
         type="button"
         id="task-input"
         onClick={handleAddTask}

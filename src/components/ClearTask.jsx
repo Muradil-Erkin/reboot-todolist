@@ -1,6 +1,12 @@
+import { useContext } from "react";
 import { Modal } from "./Modal";
+import { TasksContext } from "../context/TasksContext";
 
-const ClearTask = ({ clearTasks, disabled }) => {
+const ClearTask = () => {
+  const { tasks, clearCompletedTasks } = useContext(TasksContext);
+
+  const disabled = tasks.filter((task) => task.isCompleted).length === 0;
+
   return (
     <>
       <div className="w-100">
@@ -15,7 +21,7 @@ const ClearTask = ({ clearTasks, disabled }) => {
         </button>
       </div>
 
-      <Modal id="clearCompletedTasks" handleDelete={clearTasks} />
+      <Modal id="clearCompletedTasks" handleDelete={clearCompletedTasks} />
     </>
   );
 };
