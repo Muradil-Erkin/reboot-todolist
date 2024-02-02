@@ -44,3 +44,7 @@ body {
 .priority-icon {
   padding-right: 5px;
 }
+
+.sort-select {
+  width: fit-content;
+}

@@ -2,9 +2,10 @@ import { useContext, useState } from "react";
 import { Modal } from "./Modal";
 import { TaskItem } from "./TaskItem";
 import { TasksContext } from "../context/TasksContext";
+import { PriorityMapping } from "../constants";
 
 const TaskList = () => {
-  const { tasks, filter, deleteTask } = useContext(TasksContext);
+  const { tasks, filter, deleteTask, sortOrder } = useContext(TasksContext);
 
   const [taskToBeDeleted, setTaskToBeDeleted] = useState();
   console.log("taskToBeDeleted is updated", taskToBeDeleted);
@@ -22,7 +23,24 @@ const TaskList = () => {
     }
   });
 
-  const taskItems = filteredTasks.map((task) => {
+  const sortedTasks = filteredTasks.sort((a, b) => {
+    switch (sortOrder) {
+      case "default":
+        return 0; // keeping the same order
+      case "plh":
+        return (
+          PriorityMapping[a.priority].value - PriorityMapping[b.priority].value
+        );
+      case "phl":
+        return (
+          PriorityMapping[b.priority].value - PriorityMapping[a.priority].value
+        );
+      default:
+        return 0;
+    }
+  });
+
+  const taskItems = sortedTasks.map((task) => {
     return (
       <TaskItem
         key={task.taskId}
