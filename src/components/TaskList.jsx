@@ -8,7 +8,6 @@ const TaskList = () => {
   const { tasks, filter, deleteTask, sortOrder } = useContext(TasksContext);
 
   const [taskToBeDeleted, setTaskToBeDeleted] = useState();
-  console.log("taskToBeDeleted is updated", taskToBeDeleted);
 
   const filteredTasks = tasks.filter((task) => {
     switch (filter) {
@@ -57,7 +56,6 @@ const TaskList = () => {
   );
 
   const handleDeleteTask = () => {
-    console.log("Deleting task w/ ID: ", taskToBeDeleted.taskId);
     deleteTask(taskToBeDeleted.taskId);
   };
 

@@ -113,10 +113,6 @@ const TaskItem = ({ task, setTaskToBeDeleted }) => {
                 data-bs-target="#taskListDeleteTask"
                 onClick={() => {
                   setTaskToBeDeleted(task);
-                  console.log(
-                    "Clicked on trash can, and passing up data",
-                    task
-                  );
                 }}
               >
                 <i className="fa-solid fa-trash-can" aria-hidden="true"></i>

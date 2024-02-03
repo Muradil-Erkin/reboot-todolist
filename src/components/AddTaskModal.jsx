@@ -28,12 +28,6 @@ const AddTaskModal = () => {
     setTaskLabel(e.target.value);
   };
 
-  //   const handleKeyDown = (e) => {
-  //     if (e.key === "Enter") {
-  //       handleAddTask();
-  //     }
-  //   };
-
   const handlePriorityChange = (e) => {
     setPriority(e.target.value);
   };
@@ -72,7 +66,6 @@ const AddTaskModal = () => {
                 aria-describedby="task-input"
                 value={taskLabel}
                 onChange={handleChange}
-                // onKeyDown={handleKeyDown}
               />
             </div>
             <div className="mb-3">
@@ -110,4 +103,4 @@ const AddTaskModal = () => {
   );
 };
 
-export { AddTaskModal, ADD_TASK_MODAL_ID };
+export { AddTaskModal };
