@@ -11,12 +11,22 @@ function App() {
       <main className="container">
         <div className="row justify-content-center">
           <div className="col col-md-10 col-lg-8 col-xl-6">
-            <div className="d-flex justify-content-between align-items-center mb-3">
-              <Sort />
-              <ClearTask />
-            </div>
-            <TaskList />
             <Filters />
+          </div>
+        </div>
+        <div className="row justify-content-center">
+          <div className="col col-md-10 col-lg-8 col-xl-6 mb-3">
+            <Sort />
+          </div>
+        </div>
+        <div className="row justify-content-center">
+          <div className="col col-md-10 col-lg-8 col-xl-6">
+            <TaskList />
+          </div>
+        </div>
+        <div className="row justify-content-center">
+          <div className="col col-md-10 col-lg-8 col-xl-6">
+            <ClearTask />
           </div>
         </div>
       </main>
